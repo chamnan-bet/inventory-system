@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Inventory Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Inventory System</h1>
+    
+    <p>Logged in as: <b sec:authentication="name">User</b></p>
+    <p>Your Role: <b sec:authentication="principal.authorities">Roles</b></p>
+
+    <div sec:authorize="hasRole('ADMIN')">
+        <p style="color: green;">You have Admin Access!</p>
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
