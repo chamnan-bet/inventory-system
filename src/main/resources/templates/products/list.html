@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Products - Inventory System</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+    <link rel="stylesheet" th:href="@{/css/product.css}" />
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div th:replace="~{fragments/layout :: sidebar(activePage='products')}"></div>
+
+        <main class="main-content">
+            <div th:replace="~{fragments/layout :: header(pageTitle='Products')}"></div>
+
+            <div class="p-6">
+                <div class="action-bar">
+                    <a th:href="@{/products/add}" class="btn-create">
+                        + Create New Product
+                    </a>
+                </div>
+
+                <div class="table-card">
+                    <table class="inventory-table">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>NAME</th>
+                                <th>CATEGORY</th>
+                                <th>PRICE</th>
+                                <th>QUANTITY</th>
+                                <th>STATUS</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="product : ${products}">
+                                <td th:text="${product.sku}">SKU-100</td>
+                                <td th:text="${product.name}">Example</td>
+                                <td th:text="${product.category}">Category</td>
+                                <td th:text="${#numbers.formatCurrency(product.price)}">$0.00</td>
+                                <td th:text="${product.quantity}">0</td>
+                                <td>
+                                    <span class="status-badge" 
+                                          th:classappend="${product.quantity > 0 ? 'status-instock' : 'status-outofstock'}"
+                                          th:text="${product.quantity > 0 ? 'In Stock' : 'Out of Stock'}">
+                                    </span>
+                                </td>
+                                <td>
+                                    <a th:href="@{/products/edit/{id}(id=${product.id})}" class="text-blue">Edit</a>
+                                    <form th:action="@{/products/delete/{id}(id=${product.id})}" method="post" style="display:inline;">
+                                        <button type="submit" class="text-red">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(products)}">
+                                <td colspan="7" style="text-align: center; padding: 40px; color: #64748b;">
+                                    No products found.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Inventory Dashboard</title>
+    <title>Dashboard - Inventory System</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Welcome to the Inventory System</h1>
-    
-    <p>Logged in as: <b sec:authentication="name">User</b></p>
-    <p>Your Role: <b sec:authentication="principal.authorities">Roles</b></p>
+    <div class="dashboard-container">
+        
+        <div th:replace="~{fragments/layout :: sidebar(activePage='dashboard')}"></div>
 
-    <div sec:authorize="hasRole('ADMIN')">
-        <p style="color: green;">You have Admin Access!</p>
+        <main class="main-content">
+            <div th:replace="~{fragments/layout :: header(pageTitle='Dashboard')}"></div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Quick Actions</h3>
+                    <p>Select an option from the sidebar to get started.</p>
+                </div>
+                </div>
+
+            <div th:replace="~{fragments/layout :: footer}"></div>
+        </main>
     </div>
-
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">Logout</button>
-    </form>
 </body>
 </html>
