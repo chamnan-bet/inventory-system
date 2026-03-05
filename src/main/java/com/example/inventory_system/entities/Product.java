@@ -42,6 +42,9 @@ public class Product {
     @Column(name = "min_stock_level")
     private Integer minStockLevel = 5;
 
+    @Column(name = "is_delete", nullable = false)
+    private Integer isDelete = 0; 
+
     @Column(name = "expiry_date")
     private LocalDate expiryDate;
 
