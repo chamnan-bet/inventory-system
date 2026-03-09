@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.chamnan.inventory_system.entities.Product;
 import com.chamnan.inventory_system.entities.StockTransaction;
-import com.chamnan.inventory_system.model.TransactionType;
+import com.chamnan.inventory_system.helper.TransactionType;
 import com.chamnan.inventory_system.repository.ProductRepository;
 import com.chamnan.inventory_system.repository.StockTransactionRepository;
 import com.chamnan.inventory_system.repository.UserRepository;

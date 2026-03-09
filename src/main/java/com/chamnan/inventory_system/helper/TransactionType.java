@@ -1,4 +1,4 @@
-package com.chamnan.inventory_system.model;
+package com.chamnan.inventory_system.helper;
 
 public enum TransactionType {
     STOCK_IN,

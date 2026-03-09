@@ -2,7 +2,7 @@ package com.chamnan.inventory_system.entities;
 
 import java.time.LocalDateTime;
 
-import com.chamnan.inventory_system.model.TransactionType;
+import com.chamnan.inventory_system.helper.TransactionType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

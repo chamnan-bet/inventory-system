@@ -129,7 +129,8 @@
                                                 </td>
                                                 <td class="text-muted" th:text="${p.minStockLevel}">5</td>
                                                 <td class="pe-4 text-end">
-                                                    <a th:href="@{/stocks}" class="btn btn-sm btn-primary">Restock</a>
+                                                    <a th:href="@{/stocks/select/{id}(id=${p.productId})}"
+                                                       class="btn btn-sm btn-primary">Restock</a>
                                                 </td>
                                             </tr>
                                             <tr th:if="${#lists.isEmpty(lowStockProducts)}">

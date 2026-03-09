@@ -12,30 +12,29 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-@Table(name = "roles")
-public class Role {
+@Table(name = "user_group_details")
+public class UserGroupDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "role_name", nullable = false, length = 100)
-    private String roleName;
-
-    @Column(name = "type", length = 50)
-    private String type;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "group_id", nullable = false)
+    private Group group;
 
     @ColumnDefault("1")
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "is_active")
     private Byte isActive;
 
     @ColumnDefault("0")
-    @Column(name = "is_deleted", nullable = false)
+    @Column(name = "is_deleted")
     private Byte isDeleted;
 
     @Column(name = "deleted_at")

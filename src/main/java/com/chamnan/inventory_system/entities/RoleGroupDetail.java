@@ -1,40 +1,37 @@
 package com.chamnan.inventory_system.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "roles")
-public class Role {
+@Table(name = "role_group_details")
+public class RoleGroupDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "role_name", nullable = false, length = 100)
-    private String roleName;
-
-    @Column(name = "type", length = 50)
-    private String type;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "group_id", nullable = false)
+    private Group group;
 
     @ColumnDefault("1")
     @Column(name = "is_active", nullable = false)
     private Byte isActive;
 
-    @ColumnDefault("0")
+    @ColumnDefault("1")
     @Column(name = "is_deleted", nullable = false)
     private Byte isDeleted;
 
@@ -55,6 +52,4 @@ public class Role {
 
     @Column(name = "updated_by", length = 100)
     private String updatedBy;
-
-
 }

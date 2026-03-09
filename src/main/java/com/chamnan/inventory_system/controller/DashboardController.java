@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.chamnan.inventory_system.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +17,12 @@ import com.chamnan.inventory_system.repository.ProductRepository;
 @Controller
 @RequestMapping("/dashboard")
 public class DashboardController {
-
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @GetMapping
     public String showDashboard(Model model) {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productService.getAllProducts();
 
         // Total products
         long totalProducts = products.size();

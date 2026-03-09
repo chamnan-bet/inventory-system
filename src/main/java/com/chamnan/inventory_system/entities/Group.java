@@ -4,31 +4,21 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "roles")
-public class Role {
+@Table(name = "groups")
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "role_name", nullable = false, length = 100)
-    private String roleName;
-
-    @Column(name = "type", length = 50)
-    private String type;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
+    @Column(name = "group_name", nullable = false, length = 100)
+    private String groupName;
 
     @ColumnDefault("1")
     @Column(name = "is_active", nullable = false)
